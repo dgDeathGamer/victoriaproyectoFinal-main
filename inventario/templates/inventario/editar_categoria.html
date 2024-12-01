@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/editar_categoria.css' %}">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-container label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-container input[readonly] {
+            background-color: #f5f5f5;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .form-container button:active {
+            transform: scale(0.98);
+        }
+
+        .cancel-button {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #dc3545;
+            text-decoration: none;
+        }
+
+        .cancel-button:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background-color: #218838;
+        }
+    </style>
+{% endblock extra_css %}
+
+{% block content %}
+    <div class="form-container">
+        <h1>Editar Categoría</h1>
+
+        <!-- Formulario para editar el nombre de una categoría -->
+        <form method="POST" id="edit-category-form">
+            {% csrf_token %}
+            
+            <!-- Campo con el nombre actual bloqueado -->
+            <label for="current_category_name">Nombre Actual de la Categoría:</label>
+            <input type="text" id="current_category_name" name="current_category_name" value="{{ categoria.nombre }}" readonly>
+            
+            <!-- Campo para el nuevo nombre -->
+            <label for="new_category_name">Nuevo Nombre de la Categoría:</label>
+            <input type="text" id="new_category_name" name="new_category_name" placeholder="Ingrese el nuevo nombre de la categoría" required>
+            
+            <!-- Botón de guardar -->
+            <button type="submit">Guardar Cambios</button>
+        </form>
+
+        <!-- Botón de "Cancelar" -->
+        <a href="{% url 'inventario' %}" class="cancel-button">Volver al Inventario</a>
+    </div>
+
+    {% if updated %}
+        <!-- Modal de éxito -->
+        <div id="successModal" class="modal" style="display: flex;">
+            <div class="modal-content">
+                <p>¡La categoría se ha actualizado correctamente!</p>
+                <button onclick="redirectToInventario()">Cerrar</button>
+            </div>
+        </div>
+    {% endif %}
+
+    <script>
+        function redirectToInventario() {
+            window.location.href = "{% url 'inventario' %}";
+        }
+    </script>
+{% endblock content %}

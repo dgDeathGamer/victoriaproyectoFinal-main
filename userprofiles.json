@@ -1,0 +1,32 @@
+[
+{
+    "model": "usuarios.userprofile",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "user_type": "empleado",
+        "phone_number": null,
+        "email": null
+    }
+},
+{
+    "model": "usuarios.userprofile",
+    "pk": 2,
+    "fields": {
+        "user": 3,
+        "user_type": "jefe",
+        "phone_number": null,
+        "email": null
+    }
+},
+{
+    "model": "usuarios.userprofile",
+    "pk": 3,
+    "fields": {
+        "user": 4,
+        "user_type": "empleado",
+        "phone_number": null,
+        "email": null
+    }
+}
+]

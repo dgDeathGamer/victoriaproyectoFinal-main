@@ -1,0 +1,115 @@
+/* Estilos generales para la página de inventario */
+body {
+    background-image: url("/static/images/fondo_inventario.jpg"); /* Ruta absoluta al archivo estático */
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    background-position: center; /* Centra la imagen */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Título de la página */
+h1 {
+    text-align: center;
+    color: #ffffff; /* Color oscuro para el título */
+    margin: 20px 0;
+}
+
+/* Estilos para la tabla */
+table {
+    width: 90%; /* Asegura que la tabla ocupe el 90% del ancho de la pantalla */
+    margin: 20px auto; /* Centra la tabla */
+    border-collapse: collapse; /* Elimina los espacios entre las celdas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Agrega sombra para darle profundidad */
+    background-color: white; /* Fondo blanco para la tabla */
+}
+
+/* Estilo de las celdas de la tabla */
+th, td {
+    padding: 12px; /* Espaciado interno */
+    text-align: left; /* Alineación a la izquierda */
+    border-bottom: 1px solid #ddd; /* Línea separadora entre filas */
+}
+
+/* Estilos para los encabezados de la tabla */
+th {
+    background-color: #6c757d; /* Color gris para el encabezado */
+    color: white; /* Texto blanco para el encabezado */
+}
+
+/* Estilo de las filas al pasar el mouse */
+tr:hover {
+    background-color: #f1f1f1; /* Color de fondo al pasar el mouse */
+}
+
+/* Estilo para el botón de búsqueda y mostrar todo */
+.search-container {
+    display: flex;
+    justify-content: center; /* Centra el contenedor */
+    margin: 20px; /* Margen alrededor del contenedor */
+}
+
+input[type="text"], select {
+    padding: 10px; /* Espaciado interno */
+    margin-right: 10px; /* Espacio entre el input y el botón */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+button {
+    padding: 10px 15px; /* Espaciado interno */
+    background-color: #28a745; /* Color verde para el botón */
+    color: white; /* Texto blanco para el botón */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero */
+}
+
+button:hover {
+    background-color: #218838; /* Color más oscuro al pasar el mouse */
+}
+
+/* Estilos para el botón Editar */
+.btn-edit {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff; /* Color azul */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3; /* Azul más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Efecto de aumento de tamaño */
+}
+
+.btn-edit:active {
+    transform: scale(0.98); /* Efecto de contracción al hacer clic */
+}
+
+/* Estilos para el botón Eliminar */
+.btn-delete {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #dc3545; /* Color rojo */
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Efecto de aumento de tamaño */
+}
+
+.btn-delete:active {
+    transform: scale(0.98); /* Efecto de contracción al hacer clic */
+}

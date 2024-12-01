@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block navbar_title %}Ventas{% endblock %}
+{% load static %}
+
+{% block title %}Lista de Ventas - Victoria Mix Innova{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/lista_productos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Lista de Ventas</h1>
+    
+    {% if ventas %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Venta</th>
+                    <th>Producto</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venta in ventas %}
+                    <tr>
+                        <td>{{ venta.id }}</td>
+                        <td>{{ venta.producto.nombre }}</td> <!-- Solo el nombre del producto -->
+                        <td>{{ venta.producto.stock }}</td> <!-- Stock del producto -->
+                        <td>${{ venta.producto.precio|floatformat:0 }}</td> <!-- Precio en CLP, sin decimales -->
+                        <td>{{ venta.cantidad }}</td>
+                        <td>{{ venta.fecha }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay ventas registradas.</p>
+    {% endif %}
+</div>
+{% endblock %}

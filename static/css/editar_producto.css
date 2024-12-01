@@ -1,0 +1,176 @@
+/* Contenedor principal del formulario */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del formulario */
+.form-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Etiquetas del formulario */
+.form-container label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-top: 15px;
+}
+
+/* Estilo para campos de texto, número, archivos y áreas de texto */
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="file"],
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Campos de texto más altos */
+.form-container textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+/* Contenedor para mostrar la imagen actual */
+.product-image {
+    text-align: center;
+    margin: 15px 0;
+}
+
+/* Estilo de la imagen actual */
+.product-image img {
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+/* Estilo para botones */
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover del botón */
+.form-container button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Efecto al hacer clic en el botón */
+.form-container button:active {
+    transform: scale(0.98);
+}
+
+/* Botón de cancelar */
+.cancel-button {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #dc3545;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+/* Hover del botón de cancelar */
+.cancel-button:hover {
+    text-decoration: underline;
+}
+
+/* Grupo de botones (Guardar, Cancelar) */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Botones dentro del grupo */
+.button-group button,
+.button-group a {
+    width: 48%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Estilo del botón Guardar */
+.btn-save {
+    background-color: #28a745;
+}
+
+.btn-save:hover {
+    background-color: #218838;
+}
+
+/* Estilo del botón Cancelar */
+.btn-cancel {
+    background-color: #dc3545;
+}
+
+.btn-cancel:hover {
+    background-color: #c82333;
+}
+
+/* Estilo para el modal */
+.modalstock {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenido del modal */
+.modalstock-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+}
+
+/* Botón dentro del modal */
+.modalstock button {
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover del botón dentro del modal */
+.modalstock button:hover {
+    background-color: #c82333;
+}

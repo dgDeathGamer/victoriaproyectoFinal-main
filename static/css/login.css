@@ -1,0 +1,79 @@
+/* Estilos específicos para la página de inicio de sesión */
+
+/* Centrar el contenedor del formulario de login */
+.login-container {
+    max-width: 400px; /* Ancho máximo del formulario */
+    margin: 100px auto; /* Centrando vertical y horizontalmente */
+    padding: 20px; /* Espaciado interior */
+    background: #ffffff; /* Fondo blanco */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+/* Estilo del título del formulario */
+.login-container h2 {
+    text-align: center; /* Centrar el título */
+    margin-bottom: 20px; /* Espaciado inferior */
+    color: #35424a; /* Color del texto */
+}
+
+/* Estilo de los labels */
+label {
+    margin-bottom: 5px; /* Espaciado inferior */
+    color: #333; /* Color del texto de los labels */
+}
+
+/* Estilo de los inputs */
+input[type="text"],
+input[type="password"] {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interior */
+    margin: 10px 0; /* Espaciado entre inputs */
+    border: 1px solid #ccc; /* Borde ligero */
+    border-radius: 4px; /* Bordes redondeados */
+    transition: border-color 0.3s; /* Efecto de transición */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #35424a; /* Color de borde al enfocarse */
+}
+
+/* Estilo del botón */
+button {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interior */
+    background-color: #28a745; /* Color de fondo del botón (verde) */
+    color: white; /* Color del texto del botón */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
+    transition: background-color 0.3s ease; /* Efecto de transición */
+}
+
+button:hover {
+    background-color: #218838; /* Color de fondo al pasar el ratón (verde oscuro) */
+}
+
+/* Estilo del pie de página */
+footer {
+    text-align: center; /* Centrar el texto */
+    padding: 10px 0; /* Espaciado interior */
+    background: #35424a; /* Color de fondo del pie */
+    color: #ffffff; /* Color del texto del pie */
+    position: relative; /* Posición relativa para un posible uso futuro */
+    bottom: 0; /* Mantener en la parte inferior */
+    width: 100%; /* Ancho completo */
+}
+
+/* Mensajes de error y éxito */
+.message {
+    margin: 20px 0; /* Espaciado superior e inferior */
+    padding: 10px; /* Espaciado interior */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.error {
+    background: #f8d7da; /* Color de fondo para errores */
+    color: #721c24; /* Color de texto para errores */
+}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/employee-panel.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="employee-panel">
+    <h2 class="panel-title">Panel de Jefe</h2>
+    
+    <!-- Contenedor de la descripción del panel de jefe -->
+    <div class="panel-description-container">
+        <p class="panel-description">
+            Bienvenido, {{ user.username }}. Este es tu panel de jefe donde puedes supervisar y gestionar las operaciones de la empresa, además de acceder a funciones avanzadas de administración.
+        </p>
+    </div>
+    
+    <!-- Lista de funcionalidades del panel de jefe con enlaces -->
+    <ul class="panel-features">
+        <li>Gestionar el <a href="{% url 'inventario' %}"><strong>Inventario</strong></a>, asegurando que todos los productos estén actualizados y disponibles para la venta.</li>
+        <li>Registrar y supervisar <a href="{% url 'registrar_ventas' %}"><strong>Ventas</strong></a> realizadas por el equipo, manteniendo un control detallado del flujo de transacciones.</li>
+        <li>Acceder a la <a href="{% url 'usuarios' %}"><strong>Gestión de Usuarios</strong></a> para agregar, modificar o eliminar perfiles de empleados y administrar permisos.</li>
+        <li>Visualizar y generar <a href="{% url 'reportes' %}"><strong>Reportes</strong></a> de ventas e inventario para tomar decisiones informadas.</li>
+    </ul>
+
+    <!-- Nota de instrucciones adicionales con enlaces -->
+    <p class="panel-note">
+        Utiliza el menú de navegación superior para acceder a las secciones de 
+        <strong>Inventario</strong>, 
+        <strong>Registrar Ventas</strong>, 
+        <strong>Gestión de Usuarios</strong> y 
+        <strong>Reportes</strong>.
+    </p>
+    
+</div>
+{% endblock %}

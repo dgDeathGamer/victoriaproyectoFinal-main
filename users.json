@@ -1,0 +1,74 @@
+[
+{
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+        "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$bjlTNUxBSVl3WjhmMTBlNkxGNnJRVA$c8PglW6ORfB5/QUV7bDVWjgkL5/HGUr/ooHWTdx/fBo",
+        "last_login": "2024-11-12T23:02:03.698Z",
+        "is_superuser": true,
+        "username": "admin",
+        "first_name": "",
+        "last_name": "",
+        "email": "admin@gmail.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2024-11-03T23:24:06.432Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+        "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$cDV3V29VaFZPa2txbFZVYUhnb0NDYg$mvxHccFhsHOryTjs/JMRg7xyra2sOhmIgljdzQr0cbI",
+        "last_login": "2024-11-21T20:05:19.590Z",
+        "is_superuser": false,
+        "username": "employee",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-03T23:47:04.460Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+        "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$NW1xeVY0ek12TUFQTmVub2x1aEZuUA$MdOngDzsZ54R6eROPLjer99sWpgFjoEeCKklsZAETtM",
+        "last_login": "2024-11-12T23:26:05.488Z",
+        "is_superuser": false,
+        "username": "boss",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-04T01:59:37.473Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auth.user",
+    "pk": 4,
+    "fields": {
+        "password": "argon2$argon2id$v=19$m=102400,t=2,p=8$bW43MDRiRjNOYm9jMUN2a09sTTdJMg$RJHpN44ZhG3S15314Zy+f1/NHm/c66gxkdIzhxV1BKU",
+        "last_login": "2024-11-12T21:53:19.408Z",
+        "is_superuser": false,
+        "username": "aa",
+        "first_name": "",
+        "last_name": "",
+        "email": "",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2024-11-12T04:22:31.236Z",
+        "groups": [],
+        "user_permissions": []
+    }
+}
+]

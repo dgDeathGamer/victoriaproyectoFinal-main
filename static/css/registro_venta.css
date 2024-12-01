@@ -1,0 +1,63 @@
+/* Estilos generales para la página de registrar ventas */
+body {
+    background-image: url("{% static 'images/fondo_inventario.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Título de la página */
+h1 {
+    text-align: center;
+    color: #2c3e50; /* Color oscuro para el título */
+    margin: 20px 0;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    width: 90%; /* Ancho del contenedor */
+    max-width: 600px; /* Máximo ancho */
+    margin: 20px auto; /* Centra el contenedor */
+    background-color: white; /* Fondo blanco para el formulario */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para dar profundidad */
+}
+
+/* Estilos para los elementos del formulario */
+label {
+    display: block;
+    margin-bottom: 8px; /* Margen inferior */
+    color: #333; /* Color del texto */
+}
+
+input[type="number"], select {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Espaciado interno */
+    margin-bottom: 20px; /* Espacio entre campos */
+    border: 1px solid #ccc; /* Borde gris claro */
+    border-radius: 4px; /* Bordes redondeados */
+}
+
+button {
+    padding: 10px 15px; /* Espaciado interno */
+    background-color: #28a745; /* Color verde para el botón */
+    color: white; /* Texto blanco para el botón */
+    border: none; /* Sin borde */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor de puntero */
+}
+
+button:hover {
+    background-color: #218838; /* Color más oscuro al pasar el mouse */
+}
+
+/* Estilo para el enlace de volver */
+.volver {
+    display: block;
+    text-align: center;
+    margin-top: 20px; /* Espacio superior */
+    color: #2c3e50; /* Color del texto */
+}

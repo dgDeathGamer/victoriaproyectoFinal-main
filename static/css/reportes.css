@@ -1,0 +1,95 @@
+/* Contenedor del reporte */
+.report-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Título del reporte */
+.report-title {
+    text-align: center;
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* Formulario de filtros */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.filter-group {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.filter-group label {
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
+}
+
+.filter-group input[type="date"],
+.filter-group select,
+.filter-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Textarea de comentario */
+.filter-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Botón de generar reporte */
+.btn-generate {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 200px;
+}
+
+.btn-generate:hover {
+    background-color: #45a049;
+}
+
+/* Tabla de reportes */
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.report-table th, .report-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.report-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.report-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

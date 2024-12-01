@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}"> <!-- Enlace al nuevo CSS -->
+<style>
+    /* Estilo para el botón bloqueado */
+    .btn-blocked {
+        background-color: #dc3545 !important; /* Cambia el color a rojo */
+        color: white !important;
+        cursor: not-allowed;
+        border: none;
+    }
+
+    /* Estilo para el mensaje de advertencia */
+    .warning-message {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: #ffc107; /* Color amarillo */
+        color: #212529;
+        border-radius: 4px;
+        text-align: center;
+    }
+</style>
+<div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form id="login-form" method="POST">
+        {% csrf_token %}
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" name="username" id="username" required placeholder="Introduce tu nombre de usuario">
+        
+        <label for="password">Contraseña:</label>
+        <input type="password" name="password" id="password" required placeholder="Introduce tu contraseña">
+        
+        <button type="submit" id="login-button">Iniciar Sesión</button>
+    </form>
+    {% for message in messages %}
+        <div class="message error">{{ message }}</div>
+    {% endfor %}
+    <div id="warning-message" class="warning-message" style="display: none;">
+        El botón está bloqueado debido a múltiples intentos fallidos. Espere <span id="warning-timer"></span> segundos.
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let attemptCount = 0; // Contador de intentos fallidos
+        const loginButton = document.getElementById('login-button');
+        const loginForm = document.getElementById('login-form');
+        const warningMessage = document.getElementById('warning-message');
+        const warningTimer = document.getElementById('warning-timer');
+
+        // Evento al intentar enviar el formulario
+        loginForm.addEventListener('submit', function (event) {
+            const errorMessage = document.querySelector('.message.error');
+
+            // Si el mensaje de error existe y es visible, cuenta como intento fallido
+            if (errorMessage && errorMessage.style.display !== 'none') {
+                event.preventDefault(); // Evitar el envío del formulario
+                attemptCount++;
+
+                if (attemptCount >= 3) {
+                    lockButton(loginButton, 15); // Bloquear el botón por 15 segundos
+                    attemptCount = 0; // Reiniciar el contador
+                }
+            } else {
+                // Permitir el envío si no hay error
+                attemptCount = 0; // Reiniciar el contador
+            }
+        });
+
+        // Función para bloquear el botón
+        function lockButton(button, seconds) {
+            button.disabled = true; // Deshabilitar el botón
+            button.classList.add('btn-blocked'); // Aplicar la clase CSS de bloqueo
+            warningMessage.style.display = 'block'; // Mostrar la advertencia
+            let countdown = seconds;
+
+            const interval = setInterval(() => {
+                button.innerText = `Bloqueado (${countdown}s)`;
+                warningTimer.innerText = countdown; // Actualizar el contador en la advertencia
+                countdown--;
+
+                if (countdown < 0) {
+                    clearInterval(interval);
+                    button.innerText = 'Iniciar Sesión';
+                    button.disabled = false; // Habilitar el botón
+                    button.classList.remove('btn-blocked'); // Quitar la clase CSS de bloqueo
+                    warningMessage.style.display = 'none'; // Ocultar la advertencia
+                }
+            }, 1000);
+        }
+
+        // Eliminar mensaje de error después de 5 segundos
+        const errorMessage = document.querySelector('.message.error');
+        if (errorMessage) {
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000); // 5000 ms = 5 segundos
+        }
+    });
+</script>
+{% endblock %}

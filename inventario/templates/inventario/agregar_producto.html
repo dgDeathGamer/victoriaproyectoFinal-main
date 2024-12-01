@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/agregar_producto.css' %}">
+    <style>
+        /* Estilos para el modal */
+        .modal {
+            display: none; /* Oculto por defecto */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .modal-content button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .modal-content button:hover {
+            background-color: #218838;
+        }
+    </style>
+{% endblock extra_css %}
+
+{% block content %}
+    <h1>Agregar Nuevo Producto</h1>
+    
+    <div class="form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- Renderiza el formulario usando las configuraciones de ProductoForm -->
+            <button type="submit">Guardar Producto</button>
+        </form>
+
+        <!-- Botón de "Cancelar" -->
+        <a href="{% url 'inventario' %}" class="cancel-button">Cancelar</a>
+    </div>
+
+    <!-- Modal de éxito -->
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <p>Producto agregado con éxito.</p>
+            <p>Precio: ${{ form.precio.value|floatformat:0 }} CLP</p> <!-- Precio en CLP sin decimales -->
+            <button onclick="redirectToInventario()">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- JavaScript para mostrar el modal si success=true está en la URL -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('success') === 'true') {
+                // Muestra el modal solo si success=true está en la URL
+                document.getElementById('successModal').style.display = 'flex';
+            }
+        });
+
+        function redirectToInventario() {
+            // Redirige al inventario al cerrar el modal
+            window.location.href = "{% url 'inventario' %}";
+        }
+    </script>
+{% endblock content %}

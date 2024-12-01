@@ -1,0 +1,101 @@
+/* Fondo para el contenedor del formulario */
+.form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Título del formulario */
+h2 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Estilo de los grupos de campos */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+/* Estilo de las etiquetas */
+label {
+    display: block;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+/* Estilo de los campos de entrada */
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+    border-color: #5A9BD5;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Contenedor de botones */
+.form-buttons {
+    margin-top: 25px;
+    text-align: center;
+}
+
+/* Estilo de los botones */
+button[type="submit"],
+a.btn-cancel {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Botón Guardar Cambios */
+.btn-save {
+    background-color: #007BFF; /* Azul para Guardar Cambios */
+    border: none;
+    margin-right: 10px;
+}
+
+.btn-save:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-save:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Botón Cancelar */
+.btn-cancel {
+    background-color: #6c757d; /* Gris para Cancelar */
+    margin-left: 10px;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+    transform: scale(1.05);
+}

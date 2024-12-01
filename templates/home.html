@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">  <!-- Enlace al CSS personalizado -->
+
+<div class="login-container">
+    <h1>Iniciar Sesión</h1>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Usuario:</label>
+            <input type="text" id="username" name="username" class="form-control" required placeholder="Introduce tu nombre de usuario">
+        </div>
+        <div class="form-group mt-3">
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" class="form-control" required placeholder="Introduce tu contraseña">
+        </div>
+        <button type="submit" class="btn btn-primary mt-4">Ingresar</button>
+    </form>
+
+    <!-- Mensajes de error o éxito -->
+    {% for message in messages %}
+        <div class="alert alert-danger mt-3" role="alert">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endblock %}

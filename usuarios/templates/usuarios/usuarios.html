@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block navbar_title %}Usuarios{% endblock %}
+{% load static %}  
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/user-list.css' %}">
+{% endblock extra_css %}
+
+{% block content %}
+<div class="table-container">
+    <h2 class="table-title">Lista de Usuarios Registrados</h2>
+    
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Nombre de Usuario</th>
+                <th>Correo Electrónico</th>
+                <th>Tipo de Usuario</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.userprofile.get_user_type_display }}</td>
+                <td>
+                    <!-- Enlaces para editar y eliminar el usuario -->
+                    <a href="{% url 'edit_user' user.id %}" class="btn btn-edit">Editar</a>
+                    <a href="javascript:void(0);" onclick="confirmDelete('{{ user.id }}', '{{ user.username }}');" class="btn btn-delete">Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No hay usuarios registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Botón para añadir un nuevo empleado debajo de la tabla -->
+    <div style="text-align: center;">
+        <a href="{% url 'add_user' %}" class="btn btn-add">Añadir Empleado</a>
+    </div>
+</div>
+
+<!-- Ventana emergente de confirmación -->
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <p id="modalText">¿Estás seguro de que deseas eliminar este usuario?</p>
+        <div class="modal-buttons">
+            <a href="#" id="confirmDeleteBtn" class="btn-confirm">Confirmar</a>
+            <a href="javascript:void(0);" onclick="closeModal();" class="btn-cancel">Cancelar</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Función para abrir la ventana modal con el nombre del usuario
+    function confirmDelete(userId, username) {
+        document.getElementById('modalText').innerText = '¿Estás seguro de que deseas eliminar al usuario ' + username + '?';
+        document.getElementById('confirmDeleteBtn').href = '{% url "delete_user" 0 %}'.replace('0', userId);
+        document.getElementById('deleteModal').style.display = 'flex';
+    }
+
+    // Función para cerrar la ventana modal
+    function closeModal() {
+        document.getElementById('deleteModal').style.display = 'none';
+    }
+</script>
+{% endblock content %}

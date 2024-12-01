@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% block navbar_title %}Inventario{% endblock %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/inventario.css' %}">
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            width: 100%;
+            max-width: 500px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .modal-content button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background-color: #218838;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-container input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 70%;
+            max-width: 600px;
+        }
+
+        .search-container input:focus {
+            border-color: #007bff;
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .action-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-add-product,
+        .btn-add-category {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .btn-add-product:hover,
+        .btn-add-category:hover {
+            background-color: #218838;
+        }
+
+        .btn-edit, .btn-delete {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .btn-edit {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-delete {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+    </style>
+{% endblock extra_css %}
+
+{% block content %}
+    <h1>Categorías Disponibles</h1>
+
+    <!-- Botones de agregar y gestionar categorías -->
+    {% if user_type == 'jefe' %}
+        <div class="action-buttons">
+            <a href="{% url 'agregar_categoria' %}" class="btn-add-category">Agregar Categoría</a>
+        </div>
+    {% endif %}
+
+    <!-- Tabla de categorías -->
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Categoría</th>
+                {% if user_type == 'jefe' %}
+                    <th>Acciones</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% if categorias %}
+                {% for categoria in categorias %}
+                <tr>
+                    <td>{{ categoria.id }}</td>
+                    <td>{{ categoria.nombre }}</td>
+                    {% if user_type == 'jefe' %}
+                        <td>
+                            <a href="{% url 'editar_categoria' categoria.id %}" class="btn-edit">Editar</a>
+                            <a href="{% url 'eliminar_categoria' categoria.id %}" class="btn-delete" onclick="return confirm('¿Estás seguro de que deseas eliminar esta categoría?');">Eliminar</a>
+                        </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3" style="text-align: center;">No se encontraron categorías registradas.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <h1>Productos Disponibles</h1>
+
+    <!-- Botón para agregar productos -->
+    {% if user_type == 'jefe' %}
+        <div class="action-buttons">
+            <a href="{% url 'agregar_producto' %}" class="btn-add-product">Agregar Producto</a>
+        </div>
+    {% endif %}
+
+    <!-- Buscador de productos -->
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Buscar por nombre o categoría">
+    </div>
+
+    <!-- Tabla de productos -->
+    <table>
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                {% if user_type == 'jefe' %}
+                    <th>Acciones</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody id="product-table-body">
+            {% if productos %}
+                {% for producto in productos %}
+                <tr>
+                    <td>
+                        {% if producto.imagen %}
+                            <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" style="width: 50px; height: auto;">
+                        {% else %}
+                            <img src="{% static 'img/default-product.png' %}" alt="Imagen no disponible" style="width: 50px; height: auto;">
+                        {% endif %}
+                    </td>
+                    <td>{{ producto.nombre }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>${{ producto.precio|floatformat:0 }} CLP</td>
+                    <td>{{ producto.stock }}</td>
+                    {% if user_type == 'jefe' %}
+                        <td>
+                            <a href="{% url 'editar_producto' producto.id %}" class="btn-edit">Editar</a>
+                            <a href="{% url 'eliminar_producto' producto.id %}" class="btn-delete" onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?');">Eliminar</a>
+                        </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">No se encontraron productos con el término de búsqueda.</td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchBar = document.getElementById("search-bar");
+            const tableBody = document.getElementById("product-table-body");
+            const rows = Array.from(tableBody.getElementsByTagName("tr"));
+
+            searchBar.addEventListener("input", function () {
+                const searchTerm = searchBar.value.toLowerCase();
+
+                rows.forEach(row => {
+                    const productName = row.cells[1]?.textContent.toLowerCase();
+                    const categoryName = row.cells[2]?.textContent.toLowerCase();
+
+                    if (
+                        productName?.includes(searchTerm) || 
+                        categoryName?.includes(searchTerm)
+                    ) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock content %}
