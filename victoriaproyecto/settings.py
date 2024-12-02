@@ -35,7 +35,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['database-3.cpouae44usvd.us-east-2.rds.amazonaws.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['database-3.cpouae44usvd.us-east-2.rds.amazonaws.com', 'localhost', '127.0.0.1', 'ec2-18-117-76-254.us-east-2.compute.amazonaws.com']
 
 # Application definition
 INSTALLED_APPS = [
