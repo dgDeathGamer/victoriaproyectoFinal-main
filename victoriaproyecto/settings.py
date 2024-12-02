@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#c_gw=1f5!w=%w3b!h153^lq^uw^nkx*5@rc==*e!al^5zvc$@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['database-3.cpouae44usvd.us-east-2.rds.amazonaws.com', 'localhost', '127.0.0.1', 'victoriaproyectofinal-main.onrender.com','*']
+ALLOWED_HOSTS = ['database-3.cpouae44usvd.us-east-2.rds.amazonaws.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -150,8 +150,4 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    'https://victoriaproyectofinal-main.onrender.com',  # Dominio de Render con HTTPS
 ]
