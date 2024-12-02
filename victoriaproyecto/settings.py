@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-#c_gw=1f5!w=%w3b!h153^lq^uw^nkx*5@rc==*e!al^5zvc$@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['database-3.cpouae44usvd.us-east-2.rds.amazonaws.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['database-3.cpouae44usvd.us-east-2.rds.amazonaws.com', 'localhost', '127.0.0.1', 'victoriaproyectofinal-main.onrender.com','*']
 
 # Application definition
 INSTALLED_APPS = [
