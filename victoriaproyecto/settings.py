@@ -12,6 +12,16 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+DATABASES_NAME = os.getenv('DATABASE_NAME')
+DATABASE_USER = os.getenv('DATABASE_USER')
+DATABASE_HOST = os.getenv('DATABASE_HOST')
+DATABASE_PASSWORD = os.getenv('DATABASE_PASSWORD') 
+DATABASE_PORT = os.getenv('DATABASE_PORT')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +30,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-#c_gw=1f5!w=%w3b!h153^lq^uw^nkx*5@rc==*e!al^5zvc$@'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -79,11 +89,11 @@ WSGI_APPLICATION = 'victoriaproyecto.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'DBVictoriaProyecto',           # Nombre de la base de datos en UWS RDS
-        'USER': 'admin',                 # Nombre de usuario de la base de datos
-        'PASSWORD': 'Holasoydg49!',             # Contraseña de la base de datos
-        'HOST': 'database-3.cpouae44usvd.us-east-2.rds.amazonaws.com',  # Endpoint de RDS
-        'PORT': '3306',
+        'NAME': DATABASES_NAME,           # Nombre de la base de datos en UWS RDS
+        'USER': DATABASE_USER,                 # Nombre de usuario de la base de datos
+        'PASSWORD': DATABASE_PASSWORD,             # Contraseña de la base de datos
+        'HOST': DATABASE_HOST,  # Endpoint de RDS
+        'PORT': DATABASE_PORT,
     }
 }
 
